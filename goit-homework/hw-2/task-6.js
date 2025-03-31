@@ -19,8 +19,9 @@
 
 console.log('----- Task - 6 -----');
 
-function gatherNumbersFromPromt(numbers) {
+function gatherNumbersFromPromt() {
   let input = '';
+  let numbers = [];
 
   while (input !== null) {
     input = prompt('Введіть число:');
@@ -33,13 +34,21 @@ function gatherNumbersFromPromt(numbers) {
       ? numbers.push(input)
       : alert('Було введено не число, cпробуйте ще раз!');
   }
+
+  return numbers;
 }
 
 function calculateNumbersFromPromt() {
-  const numbers = [];
-  let total = 0;
+  const numbers = gatherNumbersFromPromt();
 
-  gatherNumbersFromPromt(numbers);
+  // Спосіб, якщо початковий масив не пустий:
+  // сonst prevNumbers = [1, 2];
+
+  // сonst numbers = prevNumbers.concat(gatherNumbersFromPromt());
+  // або
+  // сonst numbers = [...prevNumbers, ...gatherNumbersFromPromt()];
+
+  let total = 0;
 
   for (const number of numbers) {
     total += number;
