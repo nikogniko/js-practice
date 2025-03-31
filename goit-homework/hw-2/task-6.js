@@ -19,12 +19,8 @@
 
 console.log('----- Task - 6 -----');
 
-function calculateNumbersFromPromt() {
-  let input;
-  const numbers = [];
-  let total = 0;
-
-  input = prompt('Введіть число:');
+function gatherNumbersFromPromt(numbers) {
+  let input = '';
 
   while (input !== null) {
     input = prompt('Введіть число:');
@@ -37,6 +33,13 @@ function calculateNumbersFromPromt() {
       ? numbers.push(input)
       : alert('Було введено не число, cпробуйте ще раз!');
   }
+}
+
+function calculateNumbersFromPromt() {
+  const numbers = [];
+  let total = 0;
+
+  gatherNumbersFromPromt(numbers);
 
   for (const number of numbers) {
     total += number;

@@ -7,8 +7,14 @@
 console.log('----- Task - 5 -----');
 
 const checkForSpam = function (message) {
+  const forbiddenWords = ['spam', 'sale'];
   const normalizedString = message.toLocaleLowerCase();
-  return normalizedString.includes('spam') || normalizedString.includes('sale');
+
+  for (const word of forbiddenWords) {
+    if (normalizedString.includes(word)) return false;
+  }
+
+  return true;
 };
 
 console.log(checkForSpam('Latest technology news')); // false
