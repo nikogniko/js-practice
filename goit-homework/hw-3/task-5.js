@@ -12,12 +12,11 @@ const products = [
 ];
 
 const getAllPropValues = function (arr, prop) {
-  const entries = [...arr];
   const allPropValues = [];
 
-  for (const entry of entries) {
-    const value = entry[prop];
-    if (value !== undefined) allPropValues.push(value);
+  for (const element of arr) {
+    const value = element[prop];
+    if (value) allPropValues.push(value); // (value) те саме що (value !== undefined)
   }
 
   return allPropValues;
