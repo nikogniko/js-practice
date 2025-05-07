@@ -16,11 +16,13 @@ console.log('----- Task - 9 -----');
 //     .map(user => user.name);
 
 const getNamesSortedByFriendsCount = users =>
-  [...users]
-    .sort(
+  users
+    .toSorted(
       (curUser, nextUser) => curUser.friends.length - nextUser.friends.length,
     )
     .map(user => user.name);
+
+// toSorted() не мутує масив на відміну від sort()
 
 console.log(getNamesSortedByFriendsCount(users));
 // [ 'Moore Hensley', 'Sharlene Bush', 'Elma Head', 'Carey Barr', 'Blackburn Dotson', 'Sheree Anthony', 'Ross Vazquez' ]
