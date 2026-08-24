@@ -4,7 +4,7 @@
 //  - Solving a Problem in 4 Steps
 //  - Debugging with the console and breakpoints
 //  - Coding Challenge #1
-//  -
+//  - Coding Challenge #2 With AI
 
 'use strict'; // forbids us to do certain things and it creates visible errors in the console when we do them
 
@@ -168,26 +168,105 @@ const printForecast = function (arr) {
 printForecast(data1);
 printForecast(data2);
 
-//
-//
-// Generate lectures nums //
+///////////////////////////////////////////////
+// Coding Challenge #2 With AI
 
-// function printNumbers(numFrom, numTo) {
-//   let str = '';
-//   for (let i = numFrom; i <= numTo; i++) {
-//     str += i + ', ';
-//   }
-//   return str;
-// }
-// console.log('------------');
-// console.log(printNumbers(53, 90));
+/*
+I'm building a time tracking application for freelancers. write a function called analyzeWorkWeek that receives an array of daily work hours for a certain week, and returns an object with the following information:
+1. Total hours worked
+2. Average daily hours (round to one decimal place)
+3. The day with the most hours worked (assume monday is day 0 in the array)
+4. Number of days worked (days with > 0 hours)
+5. Whether the week was full-time (>= 35 hours) or part-time
 
-//#TODO next practice
+// The function should handle edge cases, such as empty arrays or invalid input (non-numeric values). If the input is invalid, the function should return an error message.
+// the function should require the input array to have exactly 7 days, update the function accordingly.
 
-//FIXME: remove this line
+TEST DATA: [7.5, 8, 6.5, 0, 8.5, 4, 0]
+*/
 
-//BUG: remove this line
+function analyzeWorkWeek(dailyHours) {
+  // 1. Validate that input is an array of exactly 7 days
+  if (!Array.isArray(dailyHours) || dailyHours.length !== 7) {
+    return {
+      error:
+        'Invalid input: Expected an array containing exactly 7 daily hour entries (Monday to Sunday).',
+    };
+  }
 
-// [ ] g
+  // 2. Validate that every entry is a valid, non-negative number
+  const hasInvalidEntry = dailyHours.some(
+    hours =>
+      typeof hours !== 'number' ||
+      Number.isNaN(hours) ||
+      !Number.isFinite(hours) ||
+      hours < 0,
+  );
 
-// [x] g
+  if (hasInvalidEntry) {
+    return {
+      error: 'Invalid input: All entries must be non-negative numeric values.',
+    };
+  }
+
+  const dayNames = [
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+    'Sunday',
+  ];
+
+  const totalHours = dailyHours.reduce((sum, hours) => sum + hours, 0);
+  const averageDailyHours = Number((totalHours / 7).toFixed(1));
+
+  let maxHours = -1;
+  let maxDayIndex = 0;
+  let daysWorked = 0;
+
+  dailyHours.forEach((hours, index) => {
+    if (hours > maxHours) {
+      maxHours = hours;
+      maxDayIndex = index;
+    }
+    if (hours > 0) {
+      daysWorked++;
+    }
+  });
+
+  const isFullTime = totalHours >= 35;
+
+  return {
+    totalHours: Number(totalHours.toFixed(2)),
+    averageDailyHours,
+    mostWorkedDay: dayNames[maxDayIndex],
+    daysWorked,
+    isFullTime,
+    workType: isFullTime ? 'full-time' : 'part-time',
+  };
+}
+// Valid week
+console.log(analyzeWorkWeek([7.5, 8, 6.5, 0, 8.5, 4, 0]));
+// Returns: { totalHours: 34.5, averageDailyHours: 4.9, mostWorkedDay: 'Friday', daysWorked: 5, isFullTime: false, workType: 'part-time' }
+
+// Empty array
+console.log(analyzeWorkWeek([]));
+// Returns: { error: 'Invalid input: Expected an array containing exactly 7 daily hour entries (Monday to Sunday).' }
+
+// Wrong array length (< 7 or > 7)
+console.log(analyzeWorkWeek([8, 8, 8, 8, 8]));
+// Returns: { error: 'Invalid input: Expected an array containing exactly 7 daily hour entries (Monday to Sunday).' }
+
+// Non-numeric elements (strings, null, NaN)
+console.log(analyzeWorkWeek([8, 'eight', 6.5, 0, 8.5, 4, 0]));
+// Returns: { error: 'Invalid input: All entries must be non-negative numeric values.' }
+
+// Negative hours
+console.log(analyzeWorkWeek([8, -4, 6.5, 0, 8.5, 4, 0]));
+// Returns: { error: 'Invalid input: All entries must be non-negative numeric values.' }
+
+// Non-array input
+console.log(analyzeWorkWeek(null));
+// Returns: { error: 'Invalid input: Expected an array containing exactly 7 daily hour entries (Monday to Sunday).' }
