@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <!-- Оголошуємо елементи, які будуть перевикористовуватись -->
+  <defs>
+    <!-- Ідеальне коло для крапки (радіус 10) -->
+    <circle id="dot" cx="0" cy="0" r="10" fill="#bf2e34 " />
+    
+    <!-- (Опціонально) Фон кубика, якщо він потрібен. Якщо ні - можна видалити -->
+    <rect id="bg" x="0" y="0" width="100" height="100" rx="15" fill="#ffffff" />
+  </defs>
+
+  <!-- Грань 1 -->
+  <symbol id="dice-1" viewBox="0 0 100 100">
+    <use href="#bg" />
+    <use href="#dot" x="50" y="50" />
+  </symbol>
+
+  <!-- Грань 2 -->
+  <symbol id="dice-2" viewBox="0 0 100 100">
+    <use href="#bg" />
+    <use href="#dot" x="25" y="25" />
+    <use href="#dot" x="75" y="75" />
+  </symbol>
+
+  <!-- Грань 3 -->
+  <symbol id="dice-3" viewBox="0 0 100 100">
+    <use href="#bg" />
+    <use href="#dot" x="25" y="25" />
+    <use href="#dot" x="50" y="50" />
+    <use href="#dot" x="75" y="75" />
+  </symbol>
+
+  <!-- Грань 4 -->
+  <symbol id="dice-4" viewBox="0 0 100 100">
+    <use href="#bg" />
+    <use href="#dot" x="25" y="25" />
+    <use href="#dot" x="75" y="25" />
+    <use href="#dot" x="25" y="75" />
+    <use href="#dot" x="75" y="75" />
+  </symbol>
+
+  <!-- Грань 5 -->
+  <symbol id="dice-5" viewBox="0 0 100 100">
+    <use href="#bg" />
+    <use href="#dot" x="25" y="25" />
+    <use href="#dot" x="75" y="25" />
+    <use href="#dot" x="50" y="50" />
+    <use href="#dot" x="25" y="75" />
+    <use href="#dot" x="75" y="75" />
+  </symbol>
+
+  <!-- Грань 6 -->
+  <symbol id="dice-6" viewBox="0 0 100 100">
+    <use href="#bg" />
+    <use href="#dot" x="25" y="25" />
+    <use href="#dot" x="75" y="25" />
+    <use href="#dot" x="25" y="50" />
+    <use href="#dot" x="75" y="50" />
+    <use href="#dot" x="25" y="75" />
+    <use href="#dot" x="75" y="75" />
+  </symbol>
+</svg>
